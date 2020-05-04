@@ -10,14 +10,22 @@ public class testGroupCreation {
     private WebDriver wd;
 
     @BeforeMethod(alwaysRun = true)
-    public void setUp() throws Exception {
+    public void setUp(String username) throws Exception {
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        login(username);
+    }
+
+    private void login(String username) {
+        login(username, "secret");
+    }
+
+    private void login(String username, String password) {
         wd.get("http://localhost/addressbook/group.php");
         wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys("admin");
+        wd.findElement(By.name("user")).sendKeys(username);
         wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys("secret");
+        wd.findElement(By.name("pass")).sendKeys(password);
         wd.findElement(By.id("LoginForm")).submit();
     }
 
@@ -25,7 +33,8 @@ public class testGroupCreation {
     public void testGroupCreationTests() throws Exception {
         gotoNewGroup();
         CreateGroupName();
-        fillGroupInfo();
+        fillGroupInfo(new GroupFillData("testev1", "testev2", "testev3"));
+        //новый объект с атрибутами, которые используются потом в методе заполнения формы
         submitGroup();
         returnToGroupPage();
     }
@@ -46,16 +55,16 @@ public class testGroupCreation {
         wd.findElement(By.name("new")).click();
     }
 
-    private void fillGroupInfo() {
+    private void fillGroupInfo(GroupFillData groupFillData) {
         wd.findElement(By.xpath("//form[@action='/addressbook/group.php']")).click();
         wd.findElement(By.name("group_name")).clear();
-        wd.findElement(By.name("group_name")).sendKeys("testev1");
+        wd.findElement(By.name("group_name")).sendKeys(groupFillData.getName());
         wd.findElement(By.name("group_header")).click();
         wd.findElement(By.name("group_header")).clear();
-        wd.findElement(By.name("group_header")).sendKeys("testev2");
+        wd.findElement(By.name("group_header")).sendKeys(groupFillData.getHeader());
         wd.findElement(By.name("group_footer")).click();
         wd.findElement(By.name("group_footer")).clear();
-        wd.findElement(By.name("group_footer")).sendKeys("testev3");
+        wd.findElement(By.name("group_footer")).sendKeys(groupFillData.getFooter());
     }
 
     @AfterMethod(alwaysRun = true)
