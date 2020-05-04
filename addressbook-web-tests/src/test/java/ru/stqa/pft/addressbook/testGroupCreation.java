@@ -6,14 +6,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 
+import javax.swing.*;
+
 public class testGroupCreation {
     private WebDriver wd;
+    private GroupFillData groupFillData;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp(String username) throws Exception {
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        login("admin","password");
+        login(username, "secret");
     }
 
     private void login(String username, String password) {
@@ -53,6 +56,7 @@ public class testGroupCreation {
 
     private void fillGroupInfo(GroupFillData groupFillData)
     {
+        this.groupFillData = groupFillData;
         wd.findElement(By.xpath("//form[@action='/addressbook/group.php']")).click();
         wd.findElement(By.name("group_name")).clear();
         wd.findElement(By.name("group_name")).sendKeys(groupFillData.getName());
