@@ -12,14 +12,13 @@ import org.openqa.selenium.support.ui.Select;
 
 public class GroupCreationTests {
   private WebDriver driver;
-  private String baseUrl;
   private boolean acceptNextAlert = true;
-  private StringBuffer verificationErrors = new StringBuffer();
+  private final StringBuffer verificationErrors = new StringBuffer();
 
   @BeforeClass(alwaysRun = true)
   public void setUp() throws Exception {
     driver = new ChromeDriver();
-    baseUrl = "https://www.google.com/";
+    String baseUrl = "https://www.google.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
@@ -51,7 +50,7 @@ public class GroupCreationTests {
   public void tearDown() throws Exception {
     driver.quit();
     String verificationErrorString = verificationErrors.toString();
-    if (!"".equals(verificationErrorString)) {
+    if (!verificationErrorString.equals("")) {
       fail(verificationErrorString);
     }
   }
