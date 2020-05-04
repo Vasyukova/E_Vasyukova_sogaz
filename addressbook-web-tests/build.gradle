@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'application'
+//mainClassName = "DistanceOfPoint"
+mainClassName = "ru.stqa.prt.myfirstprog.FirstTrainerProject"
+//дополнительные настройки фрейма
+repositories
+        {
+            mavenCentral()
+        }
+dependencies
+        {
+            compile 'org.testng:testng:6.9.10'
+        }
+test
+        {
+            useTestNG()
+        }
