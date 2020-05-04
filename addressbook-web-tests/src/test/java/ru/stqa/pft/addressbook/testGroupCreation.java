@@ -13,11 +13,7 @@ public class testGroupCreation {
     public void setUp(String username) throws Exception {
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        login(username);
-    }
-
-    private void login(String username) {
-        login(username, "secret");
+        login("admin","password");
     }
 
     private void login(String username, String password) {
@@ -55,7 +51,8 @@ public class testGroupCreation {
         wd.findElement(By.name("new")).click();
     }
 
-    private void fillGroupInfo(GroupFillData groupFillData) {
+    private void fillGroupInfo(GroupFillData groupFillData)
+    {
         wd.findElement(By.xpath("//form[@action='/addressbook/group.php']")).click();
         wd.findElement(By.name("group_name")).clear();
         wd.findElement(By.name("group_name")).sendKeys(groupFillData.getName());
