@@ -2,8 +2,6 @@ package ru.stqa.pft.trainer;
 
 public class Point {
     public double x, y;
-    private Object p1;
-    private Object p2;
 
     public Point(double x, double y) {
         this.x = x;
@@ -12,7 +10,6 @@ public class Point {
 
     public double distance(Point p)
     {
-        DistanceOfPoint dop = new DistanceOfPoint();
-        return dop.distance(this, p);
+        return Math.sqrt(Math.pow((p.x - this.x), 2) + Math.pow((p.y - this.y), 2));
     }
 }
