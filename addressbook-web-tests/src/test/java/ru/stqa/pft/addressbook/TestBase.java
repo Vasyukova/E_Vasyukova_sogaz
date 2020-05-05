@@ -103,6 +103,13 @@ public class TestBase
         wd.findElement(By.name("pass")).sendKeys(password);
         wd.findElement(By.id("LoginForm")).submit();
     }
+    protected void selectGroup() {
+        wd.findElement(By.name("selected[]")).click();
+    }
+
+    protected void deleteSelectedGroups() {
+        wd.findElement(By.name("delete")).click();
+    }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() throws Exception {
@@ -125,13 +132,5 @@ public class TestBase
         } catch (NoAlertPresentException e) {
             return false;
         }
-    }
-
-    protected void deleteSelectedGroups() {
-      wd.findElement(By.name("delete")).click();
-    }
-
-    protected void selectGroup() {
-      wd.findElement(By.name("selected[]")).click();
     }
 }

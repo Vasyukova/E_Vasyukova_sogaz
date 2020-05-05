@@ -12,7 +12,7 @@ public class testsDeleteGroup extends TestBase
   @Test
   public void testsDeleteGroup() throws Exception
   {
-    gotoCreateGroup();
+    gotoGroupPage();
     selectGroup();
     deleteSelectedGroups();
     gotoGroupPage();
