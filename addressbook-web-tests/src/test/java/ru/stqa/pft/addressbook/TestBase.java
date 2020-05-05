@@ -133,4 +133,8 @@ public class TestBase
             return false;
         }
     }
+
+    protected void goToGroups() {
+      wd.findElement(By.linkText("groups")).click();
+    }
 }
