@@ -18,12 +18,12 @@ public class testsGroupCreation {
     public void setUp() throws Exception {
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        gotoAddressbook();
         login("admin", "secret");
     }
 
     @Test
     public void testGroupCreationTests() throws Exception {
-        gotoAddressbook();
         gotoCreateGroup();
         fillGroupInfo(new GroupData("testev1", "testev2", "testev3"));
         submitGroupCreation();
