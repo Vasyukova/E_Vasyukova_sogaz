@@ -5,6 +5,7 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -62,6 +63,45 @@ public class TestBase
 
     private void gotoAddressbook() {
         wd.get("http://localhost/addressbook/group.php");
+    }
+
+    protected void ContactCreation(GroupContData groupContData) {
+        wd.findElement(By.linkText("add new")).click();
+        wd.findElement(By.name("firstname")).click();
+        wd.findElement(By.name("firstname")).clear();
+        wd.findElement(By.name("firstname")).sendKeys(groupContData.getFirstname());
+        wd.findElement(By.name("lastname")).click();
+        wd.findElement(By.name("lastname")).clear();
+        wd.findElement(By.name("lastname")).sendKeys(groupContData.getLastname());
+        wd.findElement(By.name("address")).click();
+        wd.findElement(By.name("address")).clear();
+        wd.findElement(By.name("address")).sendKeys(groupContData.getAdress());
+        wd.findElement(By.name("mobile")).click();
+        wd.findElement(By.name("mobile")).clear();
+        wd.findElement(By.name("mobile")).sendKeys(groupContData.getMobilenumber());
+        wd.findElement(By.name("email")).click();
+        wd.findElement(By.name("email")).clear();
+        wd.findElement(By.name("email")).sendKeys(groupContData.getEmailadress());
+        wd.findElement(By.name("bday")).click();
+        new Select(wd.findElement(By.name("bday"))).selectByVisibleText(groupContData.getBday());
+        wd.findElement(By.name("bday")).click();
+        wd.findElement(By.name("bmonth")).click();
+        new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(groupContData.getBmonth());
+        wd.findElement(By.name("bmonth")).click();
+        wd.findElement(By.name("byear")).click();
+        wd.findElement(By.name("byear")).clear();
+        wd.findElement(By.name("byear")).sendKeys(groupContData.getByear());
+        wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+    }
+
+    private void connectandlogin(String username, String password) {
+        wd.get("http://localhost/addressbook/");
+        wd.findElement(By.name("user")).click();
+        wd.findElement(By.name("user")).clear();
+        wd.findElement(By.name("user")).sendKeys(username);
+        wd.findElement(By.name("pass")).clear();
+        wd.findElement(By.name("pass")).sendKeys(password);
+        wd.findElement(By.id("LoginForm")).submit();
     }
 
     @AfterMethod(alwaysRun = true)
