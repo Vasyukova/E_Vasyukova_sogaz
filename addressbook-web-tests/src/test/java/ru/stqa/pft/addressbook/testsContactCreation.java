@@ -22,7 +22,6 @@ public class testsContactCreation
     public void testContact() throws Exception {
         ContactCreation(new GroupContData("Elena", "Vasyukova", "Korolev, Akademika Legostaeva", "89990006666", "Vasyukova.Elena@sogaz.ru", "29", "May", "1990"));
         gotoHomePage();
-        logout();
     }
 
     private void ContactCreation(GroupContData groupContData) {
