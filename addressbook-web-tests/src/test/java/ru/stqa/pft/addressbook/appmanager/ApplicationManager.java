@@ -16,11 +16,11 @@ public class ApplicationManager {
     private GroupHelper groupHelper;
 
     public void initial() {
-        navigationHelper.wd = new ChromeDriver();
+        wd = new ChromeDriver();
         navigationHelper.wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        gotoAddressbook();
-        groupHelper = new GroupHelper(navigationHelper.wd);
-        contactHelper = new ContactHelper(navigationHelper.wd);
+        wd.get("http://localhost/addressbook/group.php");
+        groupHelper = new GroupHelper(wd);
+        contactHelper = new ContactHelper(wd);
         sessionHelper = new SessionHelper(wd);
         sessionHelper.login("admin", "secret");
     }
@@ -28,13 +28,10 @@ public class ApplicationManager {
     public void logout() {
         navigationHelper.wd.findElement(By.linkText("Logout")).click();
     }
-
-    private void gotoAddressbook()
-    {
-        navigationHelper.wd.get("http://localhost/addressbook/group.php");
-    }
+    
 
     public void stop() {
+        wd.findElement(By.linkText("Logout")).click();
         navigationHelper.wd.quit();
     }
 
@@ -66,5 +63,10 @@ public class ApplicationManager {
 
     public ContactHelper getContactHelper() {
         return contactHelper;
+    }
+
+    public SessionHelper getSessionHelper()
+    {
+        sessionHelper.login(username, password);
     }
 }

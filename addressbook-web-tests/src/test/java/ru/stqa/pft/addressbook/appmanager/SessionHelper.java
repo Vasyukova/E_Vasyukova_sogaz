@@ -3,14 +3,13 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class SessionHelper
+public class SessionHelper extends TestBase
 {
 
-    private ChromeDriver wd;
+    private final ChromeDriver wd;
 
     public SessionHelper(ChromeDriver wd)
     {
-
         this.wd = wd;
     }
 
