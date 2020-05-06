@@ -18,7 +18,7 @@ public class TestBase {
         appobj.stop();
     }
 
-    public ApplicationManager getApplicationManager() {
+    protected ApplicationManager getApplicationManager() {
         return appobj;
     }
 }

@@ -3,22 +3,17 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class SessionHelper extends TestBase
+public class SessionHelper extends HelperBase
 {
-
-    private final ChromeDriver wd;
 
     public SessionHelper(ChromeDriver wd)
     {
-        this.wd = wd;
+        super(wd);
     }
 
-    public void login(String login, String password) {
-        wd.findElement(By.name("user")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys("admin");
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys("secret");
-        wd.findElement(By.id("LoginForm")).submit();
+    public void login(String username, String password) {
+        type(By.name("user"), username);
+        type(By.name("pass"), password);
+        click(By.xpath("//input[@value='Login']"));
     }
 }

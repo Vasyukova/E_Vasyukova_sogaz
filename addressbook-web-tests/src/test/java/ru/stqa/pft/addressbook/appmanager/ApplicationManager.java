@@ -1,8 +1,6 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -11,13 +9,12 @@ public class ApplicationManager {
 
     ChromeDriver wd;
     private SessionHelper sessionHelper;
-    private final NavigationHelper navigationHelper = new NavigationHelper();
+    private NavigationHelper navigationHelper;
     private ContactHelper contactHelper;
     private GroupHelper groupHelper;
 
     public void initial() {
         wd = new ChromeDriver();
-        navigationHelper.wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/group.php");
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
@@ -44,6 +41,6 @@ public class ApplicationManager {
 
     public SessionHelper getSessionHelper()
     {
-        return sessionHelper.login();
+        return sessionHelper;
     }
 }
