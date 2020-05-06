@@ -6,9 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class HelperBase
 {
-
     public ChromeDriver wd;
-
     public HelperBase(ChromeDriver wd) {
         this.wd = wd;
     }
