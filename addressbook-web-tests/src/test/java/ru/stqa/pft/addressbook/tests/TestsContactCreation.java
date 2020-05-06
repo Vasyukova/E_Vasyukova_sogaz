@@ -3,7 +3,7 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.modeldata.GroupContData;
 
-public class testsContactCreation extends TestBase{
+public class TestsContactCreation extends TestBase{
 
     @Test
     public void testContact() throws Exception
