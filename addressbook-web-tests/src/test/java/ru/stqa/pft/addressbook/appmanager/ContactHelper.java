@@ -42,7 +42,6 @@ public class ContactHelper
         wd.findElement(By.name("byear")).click();
         wd.findElement(By.name("byear")).clear();
         wd.findElement(By.name("byear")).sendKeys(contData.getByear());
-        wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
     }
 
     public void submitCreationContact() {
