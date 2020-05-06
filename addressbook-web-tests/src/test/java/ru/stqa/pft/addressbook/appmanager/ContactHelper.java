@@ -2,13 +2,15 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.modeldata.GroupContData;
 
 public class ContactHelper
 {
-    public WebDriver wd;
-    public ContactHelper(WebDriver wd)
+    public ChromeDriver wd;
+
+    public ContactHelper(ChromeDriver wd)
     {
         this.wd = wd;
     }

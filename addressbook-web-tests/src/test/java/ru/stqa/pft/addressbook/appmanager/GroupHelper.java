@@ -2,14 +2,15 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import ru.stqa.pft.addressbook.modeldata.GroupData;
 
 public class GroupHelper
 {
 
-    public WebDriver wd;
+    public ChromeDriver wd;
 
-    public GroupHelper(WebDriver wd)
+    public GroupHelper(ChromeDriver wd)
     {
         this.wd = wd;
     }
