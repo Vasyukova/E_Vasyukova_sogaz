@@ -15,7 +15,6 @@ public class ContactHelper extends HelperBase
         click(By.linkText("add new"));
     }
 
-
     public void contactCreation(ContData contData) {
         type(By.name("firstname"), contData.getFirstname());
         type(By.name("lastname"),contData.getLastname());
@@ -35,7 +34,6 @@ public class ContactHelper extends HelperBase
     public void gotoContactPage() {
         click(By.linkText("home page"));
     }
-
 
     public void modificationClass()
     {
