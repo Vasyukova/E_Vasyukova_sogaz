@@ -7,6 +7,7 @@ import ru.stqa.pft.addressbook.appmanager.ApllicationManager;
 public class TestBase {
 
     protected final ApllicationManager appobj = new ApllicationManager();
+    private final ApllicationManager apllicationManager = new ApllicationManager();
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
@@ -18,4 +19,7 @@ public class TestBase {
         appobj.stop();
     }
 
+    public ApllicationManager getApllicationManager() {
+        return apllicationManager;
+    }
 }
