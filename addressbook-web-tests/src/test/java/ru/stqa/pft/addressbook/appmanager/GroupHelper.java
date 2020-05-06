@@ -7,7 +7,6 @@ import ru.stqa.pft.addressbook.modeldata.GroupData;
 
 public class GroupHelper
 {
-
     public ChromeDriver wd;
 
     public GroupHelper(ChromeDriver wd)

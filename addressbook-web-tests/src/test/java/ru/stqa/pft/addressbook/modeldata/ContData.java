@@ -1,6 +1,6 @@
 package ru.stqa.pft.addressbook.modeldata;
 
-public class GroupContData {
+public class ContData {
     private final String firstname;
     private final String lastname;
     private final String adress;
@@ -10,7 +10,7 @@ public class GroupContData {
     private final String bmonth;
     private final String byear;
 
-    public GroupContData(String firstname, String lastname, String adress, String mobilenumber, String emailadress, String bday, String bmonth, String byear) {
+    public ContData(String firstname, String lastname, String adress, String mobilenumber, String emailadress, String bday, String bmonth, String byear) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.adress = adress;

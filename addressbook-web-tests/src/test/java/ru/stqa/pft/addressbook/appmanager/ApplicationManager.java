@@ -18,7 +18,7 @@ public class ApplicationManager {
         navigationHelper.wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         gotoAddressbook();
         groupHelper = new GroupHelper(navigationHelper.wd);
-        contactHelper = new ContactHelper(contactHelper.wd);
+        contactHelper = new ContactHelper(navigationHelper.wd);
         login("admin", "secret");
     }
 
