@@ -1,7 +1,8 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import static org.openqa.selenium.By.linkText;
 
 public class NavigationHelper extends HelperBase
 {
@@ -12,11 +13,11 @@ public class NavigationHelper extends HelperBase
 
     public void goToCreateGroup()
     {
-        click(By.linkText("groups"));
+        click(linkText("groups"));
     }
 
     public void gotoHomePage()
     {
-        click(By.linkText("home"));
+        click(linkText("home"));
     }
 }
