@@ -102,6 +102,9 @@ public class ApllicationManager
         wd.findElement(By.name("pass")).sendKeys(password);
         wd.findElement(By.id("LoginForm")).submit();
     }
+    public void goToGroups() {
+        wd.findElement(By.linkText("groups")).click();
+    }
 
     public void selectGroup() {
         wd.findElement(By.name("selected[]")).click();
@@ -131,9 +134,5 @@ public class ApllicationManager
         } catch (NoAlertPresentException e) {
             return false;
         }
-    }
-
-    protected void goToGroups() {
-      wd.findElement(By.linkText("groups")).click();
     }
 }
