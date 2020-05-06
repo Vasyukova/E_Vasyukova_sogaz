@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class ApllicationManager {
+public class ApplicationManager {
 
     private final NavigationHelper navigationHelper = new NavigationHelper();
     private ContactHelper contactHelper;
