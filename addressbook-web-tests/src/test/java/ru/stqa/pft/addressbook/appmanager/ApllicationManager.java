@@ -3,124 +3,88 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.modeldata.GroupContData;
-import ru.stqa.pft.addressbook.modeldata.GroupData;
 
 import java.util.concurrent.TimeUnit;
 
-public class ApllicationManager
-{
+public class ApllicationManager {
 
-    private WebDriver wd;
+    private final NavigationHelper navigationHelper = new NavigationHelper();
+    private GroupHelper groupHelper;
 
     public void initial() {
-        wd = new ChromeDriver();
-        wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        navigationHelper.wd = new ChromeDriver();
+        navigationHelper.wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         gotoAddressbook();
+        groupHelper = new GroupHelper(navigationHelper.wd);
         login("admin", "secret");
     }
 
     public void logout() {
-        wd.findElement(By.linkText("Logout")).click();
-    }
-
-    public void gotoGroupPage() {
-        wd.findElement(By.linkText("group page")).click();
-    }
-
-    public void submitGroupCreation() {
-        wd.findElement(By.name("submit")).click();
-    }
-
-    public void fillGroupInfo(GroupData groupData) {
-        wd.findElement(By.name("group_name")).click();
-        wd.findElement(By.xpath("//form[@action='/addressbook/group.php']")).click();
-        wd.findElement(By.name("group_name")).clear();
-        wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
-        wd.findElement(By.name("group_header")).click();
-        wd.findElement(By.name("group_header")).clear();
-        wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-        wd.findElement(By.name("group_footer")).click();
-        wd.findElement(By.name("group_footer")).clear();
-        wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
-    }
-
-    public void gotoCreateGroup() {
-        wd.findElement(By.name("new")).click();
+        navigationHelper.wd.findElement(By.linkText("Logout")).click();
     }
 
     public void login(String login, String password) {
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(login);
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(password);
-        wd.findElement(By.id("LoginForm")).submit();
+        navigationHelper.wd.findElement(By.name("user")).clear();
+        navigationHelper.wd.findElement(By.name("user")).sendKeys(login);
+        navigationHelper.wd.findElement(By.name("pass")).clear();
+        navigationHelper.wd.findElement(By.name("pass")).sendKeys(password);
+        navigationHelper.wd.findElement(By.id("LoginForm")).submit();
     }
 
-    private void gotoAddressbook() {
-        wd.get("http://localhost/addressbook/group.php");
+    private void gotoAddressbook()
+    {
+        navigationHelper.wd.get("http://localhost/addressbook/group.php");
     }
 
     public void ContactCreation(GroupContData groupContData) {
-        wd.findElement(By.linkText("add new")).click();
-        wd.findElement(By.name("firstname")).click();
-        wd.findElement(By.name("firstname")).clear();
-        wd.findElement(By.name("firstname")).sendKeys(groupContData.getFirstname());
-        wd.findElement(By.name("lastname")).click();
-        wd.findElement(By.name("lastname")).clear();
-        wd.findElement(By.name("lastname")).sendKeys(groupContData.getLastname());
-        wd.findElement(By.name("address")).click();
-        wd.findElement(By.name("address")).clear();
-        wd.findElement(By.name("address")).sendKeys(groupContData.getAdress());
-        wd.findElement(By.name("mobile")).click();
-        wd.findElement(By.name("mobile")).clear();
-        wd.findElement(By.name("mobile")).sendKeys(groupContData.getMobilenumber());
-        wd.findElement(By.name("email")).click();
-        wd.findElement(By.name("email")).clear();
-        wd.findElement(By.name("email")).sendKeys(groupContData.getEmailadress());
-        wd.findElement(By.name("bday")).click();
-        new Select(wd.findElement(By.name("bday"))).selectByVisibleText(groupContData.getBday());
-        wd.findElement(By.name("bday")).click();
-        wd.findElement(By.name("bmonth")).click();
-        new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(groupContData.getBmonth());
-        wd.findElement(By.name("bmonth")).click();
-        wd.findElement(By.name("byear")).click();
-        wd.findElement(By.name("byear")).clear();
-        wd.findElement(By.name("byear")).sendKeys(groupContData.getByear());
-        wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+        groupHelper.wd.findElement(By.linkText("add new")).click();
+        groupHelper.wd.findElement(By.name("firstname")).click();
+        groupHelper.wd.findElement(By.name("firstname")).clear();
+        groupHelper.wd.findElement(By.name("firstname")).sendKeys(groupContData.getFirstname());
+        groupHelper.wd.findElement(By.name("lastname")).click();
+        groupHelper.wd.findElement(By.name("lastname")).clear();
+        groupHelper.wd.findElement(By.name("lastname")).sendKeys(groupContData.getLastname());
+        groupHelper.wd.findElement(By.name("address")).click();
+        groupHelper.wd.findElement(By.name("address")).clear();
+        groupHelper.wd.findElement(By.name("address")).sendKeys(groupContData.getAdress());
+        groupHelper.wd.findElement(By.name("mobile")).click();
+        groupHelper.wd.findElement(By.name("mobile")).clear();
+        groupHelper.wd.findElement(By.name("mobile")).sendKeys(groupContData.getMobilenumber());
+        groupHelper.wd.findElement(By.name("email")).click();
+        groupHelper.wd.findElement(By.name("email")).clear();
+        groupHelper.wd.findElement(By.name("email")).sendKeys(groupContData.getEmailadress());
+        groupHelper.wd.findElement(By.name("bday")).click();
+        new Select(groupHelper.wd.findElement(By.name("bday"))).selectByVisibleText(groupContData.getBday());
+        groupHelper.wd.findElement(By.name("bday")).click();
+        groupHelper.wd.findElement(By.name("bmonth")).click();
+        new Select(groupHelper.wd.findElement(By.name("bmonth"))).selectByVisibleText(groupContData.getBmonth());
+        groupHelper.wd.findElement(By.name("bmonth")).click();
+        groupHelper.wd.findElement(By.name("byear")).click();
+        groupHelper.wd.findElement(By.name("byear")).clear();
+        groupHelper.wd.findElement(By.name("byear")).sendKeys(groupContData.getByear());
+        groupHelper.wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
     }
 
     private void connectandlogin(String username, String password) {
-        wd.get("http://localhost/addressbook/");
-        wd.findElement(By.name("user")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(username);
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(password);
-        wd.findElement(By.id("LoginForm")).submit();
-    }
-    public void goToGroups() {
-        wd.findElement(By.linkText("groups")).click();
-    }
-
-    public void selectGroup() {
-        wd.findElement(By.name("selected[]")).click();
-    }
-
-    public void deleteSelectedGroups() {
-        wd.findElement(By.name("delete")).click();
+        groupHelper.wd.get("http://localhost/addressbook/");
+        groupHelper.wd.findElement(By.name("user")).click();
+        groupHelper.wd.findElement(By.name("user")).clear();
+        groupHelper.wd.findElement(By.name("user")).sendKeys(username);
+        groupHelper.wd.findElement(By.name("pass")).clear();
+        groupHelper.wd.findElement(By.name("pass")).sendKeys(password);
+        groupHelper.wd.findElement(By.id("LoginForm")).submit();
     }
 
     public void stop() {
-        wd.quit();
+        navigationHelper.wd.quit();
     }
 
     private boolean isElementPresent(By by) {
         try {
-            wd.findElement(by);
+            navigationHelper.wd.findElement(by);
             return true;
         } catch (NoSuchElementException e) {
             return false;
@@ -129,10 +93,18 @@ public class ApllicationManager
 
     private boolean isAlertPresent() {
         try {
-            wd.switchTo().alert();
+            navigationHelper.wd.switchTo().alert();
             return true;
         } catch (NoAlertPresentException e) {
             return false;
         }
+    }
+
+    public GroupHelper getGroupHelper() {
+        return groupHelper;
+    }
+
+    public NavigationHelper getNavigationHelper() {
+        return navigationHelper;
     }
 }
