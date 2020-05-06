@@ -9,6 +9,8 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
+    ChromeDriver wd;
+    private SessionHelper sessionHelper;
     private final NavigationHelper navigationHelper = new NavigationHelper();
     private ContactHelper contactHelper;
     private GroupHelper groupHelper;
@@ -19,6 +21,7 @@ public class ApplicationManager {
         gotoAddressbook();
         groupHelper = new GroupHelper(navigationHelper.wd);
         contactHelper = new ContactHelper(navigationHelper.wd);
+        sessionHelper = new SessionHelper(wd);
         login("admin", "secret");
     }
 
