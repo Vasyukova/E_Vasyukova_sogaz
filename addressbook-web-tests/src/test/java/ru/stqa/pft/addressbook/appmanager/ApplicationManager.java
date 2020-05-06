@@ -22,19 +22,11 @@ public class ApplicationManager {
         groupHelper = new GroupHelper(navigationHelper.wd);
         contactHelper = new ContactHelper(navigationHelper.wd);
         sessionHelper = new SessionHelper(wd);
-        login("admin", "secret");
+        sessionHelper.login("admin", "secret");
     }
 
     public void logout() {
         navigationHelper.wd.findElement(By.linkText("Logout")).click();
-    }
-
-    public void login(String login, String password) {
-        navigationHelper.wd.findElement(By.name("user")).clear();
-        navigationHelper.wd.findElement(By.name("user")).sendKeys(login);
-        navigationHelper.wd.findElement(By.name("pass")).clear();
-        navigationHelper.wd.findElement(By.name("pass")).sendKeys(password);
-        navigationHelper.wd.findElement(By.id("LoginForm")).submit();
     }
 
     private void gotoAddressbook()
