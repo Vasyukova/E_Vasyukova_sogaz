@@ -53,4 +53,19 @@ public class ContactHelper
     }
 
 
+    public void modificationClass()
+    {
+        click(By.xpath("//img[@alt='Edit']"), By.id("1"));
+    }
+
+    private void click(By xpath, By id)
+    {
+        wd.findElement(xpath).click();
+        wd.findElement(id).click();
+    }
+
+    public void updateContactInfo()
+    {
+        
+    }
 }
