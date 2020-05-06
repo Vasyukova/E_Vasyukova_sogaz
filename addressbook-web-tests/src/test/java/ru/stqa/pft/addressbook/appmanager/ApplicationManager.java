@@ -25,32 +25,9 @@ public class ApplicationManager {
         sessionHelper.login("admin", "secret");
     }
 
-    public void logout() {
-        navigationHelper.wd.findElement(By.linkText("Logout")).click();
-    }
-    
-
     public void stop() {
         wd.findElement(By.linkText("Logout")).click();
         navigationHelper.wd.quit();
-    }
-
-    private boolean isElementPresent(By by) {
-        try {
-            navigationHelper.wd.findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
-
-    private boolean isAlertPresent() {
-        try {
-            navigationHelper.wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
     }
 
     public GroupHelper getGroupHelper() {
@@ -67,6 +44,6 @@ public class ApplicationManager {
 
     public SessionHelper getSessionHelper()
     {
-        sessionHelper.login(username, password);
+        return sessionHelper.login();
     }
 }
